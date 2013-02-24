@@ -9,7 +9,7 @@ void setup() {
   img = loadImage("cartel2.png");
   img2 = loadImage("cartel2bis.png");
   consigne = true;
-  //orientation(LANDSCAPE);
+  orientation(PORTRAIT);
   textAlign(CENTER, CENTER);
   textSize(36);
     particles = new ArrayList<Particle>();
@@ -19,20 +19,21 @@ void setup() {
 
 void draw() {
   background(0);
-  image(img2, 0, 0);
   
-  tint(255, 255-value);  // Apply transparency without changing color
-  image(img, 0, 0);
-  
+  image(img2, 0, 0,width,height);
+  tint(255,255,255, 255-value);  // Apply transparency without changing color
+  image(img,0 , 0,width,height);
+  noTint();
 
   if (consigne) {
-//    fill(179,181,167, 255-value);
-//    rect(0, 0, width, height);
-    fill(0);
-   // text("Frotter pour découvrir la solution", width/2, height-20);
-     text("Frottez l’écran avec le doigt!", width/2, height-20);
+     fill(0);
+     text("Frottez l’écran avec le doigt!", width/2, height-50);
+     if (value > 0) {
+        value-=3;
+        println(value);
+     }
   }
-//  
+/** 
   Iterator<Particle> it = particles.iterator();
   while (it.hasNext()) {
     Particle p = it.next();
@@ -41,25 +42,22 @@ void draw() {
       it.remove();
     }
   }  
-  
+  /**/  
 }
 
 void mouseDragged() {
   //particles.add(new Particle(new PVector(mouseX,mouseY)));
   consigne=false;
-  value = value + 0.2;
+  value = value + 0.4;
   if (value > 254) {
     value = 254;
   }
 println (value);  
   
-
-  
-  
 }
 
 void mouseReleased() {
   consigne=true;
-  value = 0;
+  
 }
 
