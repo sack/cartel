@@ -6,6 +6,7 @@ PImage img,img2;
 ArrayList<Particle> particles;
 
 void setup() {
+  
   img = loadImage("cartel2.png");
   img2 = loadImage("cartel2bis.png");
   consigne = true;
